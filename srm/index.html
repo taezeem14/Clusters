@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #7c5cfc;
+      --accent2: #00e5ff;
+      --accent3: #ff4b6e;
+      --bg: #0a0a0f;
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Mono', monospace;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(124,92,252,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,92,252,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .blob1, .blob2 {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+      animation: drift 6s ease-in-out infinite alternate;
+    }
+    .blob1 { width: 400px; height: 400px; background: var(--accent); top: -100px; left: -100px; }
+    .blob2 { width: 300px; height: 300px; background: var(--accent2); bottom: -80px; right: -80px; animation-delay: -3s; }
+    @keyframes drift { from { transform: translate(0,0); } to { transform: translate(30px, 20px); } }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 48px 56px;
+      border: 1px solid rgba(124,92,252,0.25);
+      border-radius: 20px;
+      background: rgba(17,17,24,0.85);
+      backdrop-filter: blur(12px);
+      max-width: 420px;
+      width: 90%;
+      animation: popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.85) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .logo span { color: var(--accent); }
+
+    .icon {
+      font-size: 48px;
+      display: block;
+      margin-bottom: 16px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .sub span { color: var(--accent2); }
+
+    .bar-wrap {
+      background: rgba(255,255,255,0.06);
+      border-radius: 99px;
+      height: 4px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .bar {
+      height: 100%;
+      width: 0%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      animation: fill 2.4s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+    @keyframes fill { from{width:0%} to{width:100%} }
+
+    .status {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+    .status .dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent2);
+      margin-right: 5px;
+      animation: blink 1s ease-in-out infinite;
+      vertical-align: middle;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    .destination {
+      margin-top: 20px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.15);
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div class="blob1"></div>
+  <div class="blob2"></div>
+
+  <div class="card">
+    <div class="logo"><span>taezeem</span>.me</div>
+    <span class="icon">🏫</span>
+    <h1>Opening SRM Welkin</h1>
+    <p class="sub">Taking you to <span>srmwelkin.com</span><br>in a new tab...</p>
+    <div class="bar-wrap"><div class="bar"></div></div>
+    <div class="status"><span class="dot"></span>launching new tab</div>
+    <div class="destination">→ https://www.srmwelkin.com</div>
+  </div>
+
+  <script>
+    window.open("https://www.srmwelkin.com", "_blank", "noopener,noreferrer");
+    setTimeout(() => window.history.back(), 2500);
+  </script>
+</body>
+</html>
